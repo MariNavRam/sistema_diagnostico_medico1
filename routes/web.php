@@ -17,6 +17,31 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/consulta',[
+    'uses' => 'Medico\Consulta\ConsultaController@index',
+    'as' => 'consultaIndex'
+]);
+
+Route::get('/generar_diagnostico',[
+    'uses' => 'Medico\GenerarDiagnostico\GenerarDiagnosticoController@index',
+    'as' => 'GenerarDiagnosticoIndex'
+]);
+
+Route::get('/tratamiento',[
+    'uses' => 'Medico\Tratamiento\Tratamientoontroller@index',
+    'as' => 'TratamientoIndex'
+]);
+
+Route::get('/generar_cita',[
+    'uses' => 'Recepcionista\GenerarCita\GenerarCitaController@index',
+    'as' => 'GenerarCitaIndex'
+]);
+
+Route::get('/registrar_paciente',[
+    'uses' => 'Recepcionista\RegistrarPaciente\RegistrarPacienteController@index',
+    'as' => 'RegistrarPacienteIndex'
+]);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
