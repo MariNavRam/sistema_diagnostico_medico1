@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\DB;
 class GenerarDiagnosticoController extends Controller{
 
     public function index(){
-    	//return view("app.administrador.modulos.isr.index",["isr_items"=>$isr_items]);
+        //dd("index de generar diagnóstico");
+    	return view("app.medico.generar_diagnostico");
     }
 
     public function registrar(){

@@ -23,7 +23,7 @@ Route::get('/consulta',[
 ]);
 
 Route::get('/generar_diagnostico',[
-    'uses' => 'Medico\GenerarDiagnostico\GenerarDiagnosticoController@index',
+    'uses' => 'App\Http\Controllers\Medico\GenerarDiagnostico\GenerarDiagnosticoController@index',
     'as' => 'GenerarDiagnosticoIndex'
 ]);
 
