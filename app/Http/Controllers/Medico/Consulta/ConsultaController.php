@@ -14,6 +14,7 @@ class ConsultaController extends Controller{
 
     public function index(){
     	//return view("app.administrador.modulos.isr.index",["isr_items"=>$isr_items]);
+        return view("app.medico.generar_diagnostico");
     }
 
     public function registrar(){

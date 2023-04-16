@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Medico\GenerarDiagnostico;
+namespace App\Http\Controllers\Administrador\Usuarios;
 
 //use App\ISR;
 //use App\Premio;
@@ -10,15 +10,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 
-class GenerarDiagnosticoController extends Controller{
+class UsuarioController extends Controller{
 
     public function index(){
-        //dd("index de generar diagnóstico");
-    	return view("app.medico.diagnosticos.index");
+        //dd("registro de usuarios index");
+    	return view("app.administrador.usuarios.index");
     }
 
     public function registrar(){
-        return view("app.medico.diagnosticos.registrar");
+        return view("app.administrador.usuarios.registrar");
     }
 
     public function agregar(Request $request){
@@ -26,7 +26,7 @@ class GenerarDiagnosticoController extends Controller{
     }
 
     public function editar($id){
-        return view("app.medico.diagnosticos.editar");
+        return view("app.administrador.usuarios.editar");
     }
 
     public function actualizar(Request $request){

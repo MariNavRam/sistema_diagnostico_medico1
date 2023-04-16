@@ -18,28 +18,88 @@ Route::get('/', function () {
 });
 
 Route::get('/consulta',[
-    'uses' => 'Medico\Consulta\ConsultaController@index',
+    'uses' => 'App\Http\Controllers\Medico\Consulta\ConsultaController@index',
     'as' => 'consultaIndex'
 ]);
 
-Route::get('/generar_diagnostico',[
+Route::get('/diagnosticos',[
     'uses' => 'App\Http\Controllers\Medico\GenerarDiagnostico\GenerarDiagnosticoController@index',
-    'as' => 'GenerarDiagnosticoIndex'
+    'as' => 'DiagnosticosIndex'
 ]);
 
-Route::get('/tratamiento',[
-    'uses' => 'Medico\Tratamiento\Tratamientoontroller@index',
-    'as' => 'TratamientoIndex'
+Route::get('/generar_diagnostico',[
+    'uses' => 'App\Http\Controllers\Medico\GenerarDiagnostico\GenerarDiagnosticoController@registrar',
+    'as' => 'GenerarDiagnostico'
+]);
+
+Route::get('/tratamientos',[
+    'uses' => 'App\Http\Controllers\Medico\Tratamiento\Tratamientoontroller@index',
+    'as' => 'TratamientosIndex'
 ]);
 
 Route::get('/generar_cita',[
-    'uses' => 'Recepcionista\GenerarCita\GenerarCitaController@index',
+    'uses' => 'App\Http\Controllers\Recepcionista\GenerarCita\GenerarCitaController@index',
     'as' => 'GenerarCitaIndex'
 ]);
 
+Route::get('/pacientes',[
+    'uses' => 'App\Http\Controllers\Recepcionista\RegistrarPaciente\RegistrarPacienteController@index',
+    'as' => 'PacientesIndex'
+]);
+
 Route::get('/registrar_paciente',[
-    'uses' => 'Recepcionista\RegistrarPaciente\RegistrarPacienteController@index',
-    'as' => 'RegistrarPacienteIndex'
+    'uses' => 'App\Http\Controllers\Recepcionista\RegistrarPaciente\RegistrarPacienteController@registrar',
+    'as' => 'RegistrarPaciente'
+]);
+
+Route::get('/usuarios',[
+    'uses' => 'App\Http\Controllers\Administrador\Usuarios\UsuarioController@index',
+    'as' => 'UsuariosIndex'
+]);
+
+Route::get('/registrar_usuario',[
+    'uses' => 'App\Http\Controllers\Administrador\Usuarios\UsuarioController@registrar',
+    'as' => 'RegistrarUsuario'
+]);
+
+Route::get('/enfermedades',[
+    'uses' => 'App\Http\Controllers\Administrador\Enfermedades\EnfermedadesController@index',
+    'as' => 'EnfermedadesIndex'
+]);
+
+Route::get('/registrar_enfermedad',[
+    'uses' => 'App\Http\Controllers\Administrador\Enfermedades\EnfermedadesController@registrar',
+    'as' => 'RegistrarEnfermedad'
+]);
+
+Route::get('/signos',[
+    'uses' => 'App\Http\Controllers\Administrador\Signos\SignosController@index',
+    'as' => 'SignosIndex'
+]);
+
+Route::get('/registrar_signos',[
+    'uses' => 'App\Http\Controllers\Administrador\Signos\SignosController@registrar',
+    'as' => 'RegistrarSigno'
+]);
+
+Route::get('/sintomas',[
+    'uses' => 'App\Http\Controllers\Administrador\Sintomas\SintomasController@index',
+    'as' => 'SintomasIndex'
+]);
+
+Route::get('/registrar_sintomas',[
+    'uses' => 'App\Http\Controllers\Administrador\Sintomas\SintomasController@registrar',
+    'as' => 'RegistrarSintoma'
+]);
+
+Route::get('/historiales_de_consulta',[
+    'uses' => 'App\Http\Controllers\Recepcionista\HistorialConsulta\HistorialConsultaController@index',
+    'as' => 'HistorialesDeConsultaIndex'
+]);
+
+Route::get('/registrar_historial_de_consulta',[
+    'uses' => 'App\Http\Controllers\Recepcionista\HistorialConsulta\HistorialConsultaController@registrar',
+    'as' => 'RegistrarHistorialDeConsulta'
 ]);
 
 Route::middleware([

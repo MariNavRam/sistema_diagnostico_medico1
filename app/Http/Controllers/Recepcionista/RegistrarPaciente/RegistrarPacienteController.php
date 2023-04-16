@@ -13,11 +13,12 @@ use Illuminate\Support\Facades\DB;
 class RegistrarPacienteController extends Controller{
 
     public function index(){
-    	//return view("app.administrador.modulos.isr.index",["isr_items"=>$isr_items]);
+        //dd("Index de registrar paciente");
+    	return view("app.recepcionista.pacientes.index");
     }
 
     public function registrar(){
-        
+        return view("app.recepcionista.pacientes.registrar");
     }
 
     public function agregar(Request $request){
@@ -25,7 +26,7 @@ class RegistrarPacienteController extends Controller{
     }
 
     public function editar($id){
-       
+        return view("app.recepcionista.pacientes.editar");
     }
 
     public function actualizar(Request $request){
