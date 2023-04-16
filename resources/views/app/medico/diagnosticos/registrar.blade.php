@@ -35,13 +35,13 @@
                                 <option value="DE">Signo 4</option>
                             </select>
                             <div class="inline-flex">
-                                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">
+                                <button class="bg-green-300 hover:bg-green-400 text-gray-800 font-bold py-2 px-2 rounded-l">
                                     Agregar
                                 </button>
-                                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+                                <button class="bg-red-300 hover:bg-red-400 text-gray-800 font-bold py-2 px-2 rounded-r">
                                     Quitar
                                 </button>
-                                </div>
+                            </div>
                         </div>
 
                         <div class="mb-9">
@@ -57,13 +57,13 @@
                                 <option value="DE">Sintoma 4</option>
                             </select>
                             <div class="inline-flex">
-                                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">
+                                <button class="bg-green-300 hover:bg-green-400 text-gray-800 font-bold py-2 px-2 rounded-l">
                                     Agregar
                                 </button>
-                                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+                                <button class="bg-red-300 hover:bg-red-400 text-gray-800 font-bold py-2 px-2 rounded-r">
                                     Quitar
                                 </button>
-                                </div>
+                            </div>
                         </div>
 
                         <div class="mb-9">
@@ -95,7 +95,7 @@
                         </div>
                         
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                            Generar
+                            <a href="{{route('DiagnosticosIndex')}}">Generar</a>
                         </button>
                         
                     </form>
