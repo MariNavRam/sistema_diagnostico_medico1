@@ -12,9 +12,14 @@ use Illuminate\Support\Facades\DB;
 
 class EnfermedadesController extends Controller{
 
-    public function index(){
-        //dd("enfermedades index");
-    	return view("app.administrador.enfermedades.index");
+    public function index(Request $request){
+        if($request->user()->tipo == 'admin'){
+            return view("app.administrador.enfermedades.index");
+        }
+        else{
+            return view("app.usuario_no_autorizado.index");
+        }
+    	
     }
 
     public function registrar(){

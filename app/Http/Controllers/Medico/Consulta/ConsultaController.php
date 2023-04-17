@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\DB;
 class ConsultaController extends Controller{
 
     public function index(){
-    	//return view("app.administrador.modulos.isr.index",["isr_items"=>$isr_items]);
-        return view("app.medico.generar_diagnostico");
+    	if($request->user()->tipo == 'admin' OR $request->user()->tipo == 'medico'){
+            return view("app.medico.generar_diagnostico");
+        }
+        else{
+            return view("app.usuario_no_autorizado.index");
+        }        
     }
 
     public function registrar(){

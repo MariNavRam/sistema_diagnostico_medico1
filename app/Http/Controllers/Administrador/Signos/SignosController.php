@@ -12,9 +12,13 @@ use Illuminate\Support\Facades\DB;
 
 class SignosController extends Controller{
 
-    public function index(){
-        //dd("signos index");
-    	return view("app.administrador.signos.index");
+    public function index(Request $request){
+        if($request->user()->tipo == 'admin'){
+            return view("app.administrador.signos.index");
+        }
+        else{
+            return view("app.usuario_no_autorizado.index");
+        }
     }
 
     public function registrar(){

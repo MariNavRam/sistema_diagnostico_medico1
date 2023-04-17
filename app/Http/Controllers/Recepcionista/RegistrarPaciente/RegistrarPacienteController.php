@@ -12,9 +12,8 @@ use Illuminate\Support\Facades\DB;
 
 class RegistrarPacienteController extends Controller{
 
-    public function index(){
-        //dd("Index de registrar paciente");
-    	return view("app.recepcionista.pacientes.index");
+    public function index(Request $request){
+        return view("app.recepcionista.pacientes.index");
     }
 
     public function registrar(){

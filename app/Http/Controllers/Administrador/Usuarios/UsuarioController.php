@@ -12,9 +12,13 @@ use Illuminate\Support\Facades\DB;
 
 class UsuarioController extends Controller{
 
-    public function index(){
-        //dd("registro de usuarios index");
-    	return view("app.administrador.usuarios.index");
+    public function index(Request $request){
+        if($request->user()->tipo == 'admin'){
+            return view("app.administrador.usuarios.index");
+        }
+        else{
+            return view("app.usuario_no_autorizado.index");
+        }
     }
 
     public function registrar(){

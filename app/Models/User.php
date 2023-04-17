@@ -18,6 +18,20 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    public function tieneRol($rol){
+        if($this->tipo == null){
+            return false;
+        }
+        else{
+            if($this->tipo == $rol){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    }
+
     /**
      * The attributes that are mass assignable.
      *

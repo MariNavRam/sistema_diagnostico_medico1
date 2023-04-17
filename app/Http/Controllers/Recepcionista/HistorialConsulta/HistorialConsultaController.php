@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\DB;
 class HistorialConsultaController extends Controller{
 
     public function index(){
-        //dd("Index de registrar consulta");
     	return view("app.recepcionista.historiales_de_consulta.index");
     }
 

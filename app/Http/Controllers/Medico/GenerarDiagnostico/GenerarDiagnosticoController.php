@@ -12,9 +12,13 @@ use Illuminate\Support\Facades\DB;
 
 class GenerarDiagnosticoController extends Controller{
 
-    public function index(){
-        //dd("index de generar diagnóstico");
-    	return view("app.medico.diagnosticos.index");
+    public function index(Request $request){
+        if($request->user()->tipo == 'admin' OR $request->user()->tipo == 'medico'){
+            return view("app.medico.diagnosticos.index");
+        }
+        else{
+            return view("app.usuario_no_autorizado.index");
+        }     
     }
 
     public function registrar(){

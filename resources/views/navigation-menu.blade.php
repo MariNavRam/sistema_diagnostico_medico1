@@ -18,18 +18,20 @@
                     <x-nav-link href="{{ route('DiagnosticosIndex')}}" :active="request()->routeIs('DiagnosticosIndex')">
                         Diagnósticos
                     </x-nav-link>
-                    <x-nav-link href="{{ route('UsuariosIndex')}}" :active="request()->routeIs('UsuariosIndex')">
-                        Usuarios registrados
-                    </x-nav-link>
-                    <x-nav-link href="{{ route('EnfermedadesIndex')}}" :active="request()->routeIs('EnfermedadesIndex')">
-                        Enfermedades registradas
-                    </x-nav-link>
-                    <x-nav-link href="{{ route('SignosIndex')}}" :active="request()->routeIs('SignosIndex')">
-                        Signos registrados
-                    </x-nav-link>
-                    <x-nav-link href="{{ route('SintomasIndex')}}" :active="request()->routeIs('SintomasIndex')">
-                        Sintomas registrados
-                    </x-nav-link>
+                    @if(request()->user()->tipo == 'admin')
+                        <x-nav-link href="{{ route('UsuariosIndex')}}" :active="request()->routeIs('UsuariosIndex')">
+                            Usuarios registrados
+                        </x-nav-link>
+                        <x-nav-link href="{{ route('EnfermedadesIndex')}}" :active="request()->routeIs('EnfermedadesIndex')">
+                            Enfermedades registradas
+                        </x-nav-link>
+                        <x-nav-link href="{{ route('SignosIndex')}}" :active="request()->routeIs('SignosIndex')">
+                            Signos registrados
+                        </x-nav-link>
+                        <x-nav-link href="{{ route('SintomasIndex')}}" :active="request()->routeIs('SintomasIndex')">
+                            Sintomas registrados
+                        </x-nav-link>
+                    @endif
                     <x-nav-link href="{{ route('PacientesIndex')}}" :active="request()->routeIs('PacientesIndex')">
                         Pacientes registrados
                     </x-nav-link>

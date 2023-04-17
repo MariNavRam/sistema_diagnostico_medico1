@@ -12,9 +12,13 @@ use Illuminate\Support\Facades\DB;
 
 class SintomasController extends Controller{
 
-    public function index(){
-        //dd("sintomas index");
-        return view("app.administrador.sintomas.index");
+    public function index(Request $request){
+        if($request->user()->tipo == 'admin'){
+            return view("app.administrador.sintomas.index");
+        }
+        else{
+            return view("app.usuario_no_autorizado.index");
+        }
     }
 
     public function registrar(){

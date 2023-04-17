@@ -12,10 +12,13 @@ use Illuminate\Support\Facades\DB;
 
 class GenerarCitaController extends Controller{
 
-    public function index(){
-        //dd("Index de generar cita");
-        return view("app.recepcionista.citas.index");
-    	//return view("app.administrador.modulos.isr.index",["isr_items"=>$isr_items]);
+    public function index(Request $request){
+        if($request->user()->tipo == 'admin' OR $request->user()->tipo == 'recepcionista'){
+            return view("app.recepcionista.citas.index");
+        }
+        else{
+            return view("app.usuario_no_autorizado.index");
+        }  
     }
 
     public function registrar(){
