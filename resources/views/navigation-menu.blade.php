@@ -22,20 +22,23 @@
                     @endif
                     @if(request()->user()->tipo == 'admin')
                         <x-nav-link href="{{ route('UsuariosIndex')}}" :active="request()->routeIs('UsuariosIndex')">
-                            Usuarios registrados
+                            Usuarios
                         </x-nav-link>
                         <x-nav-link href="{{ route('EnfermedadesIndex')}}" :active="request()->routeIs('EnfermedadesIndex')">
-                            Enfermedades registradas
+                            Enfermedades
                         </x-nav-link>
                         <x-nav-link href="{{ route('SignosIndex')}}" :active="request()->routeIs('SignosIndex')">
-                            Signos registrados
+                            Signos
                         </x-nav-link>
                         <x-nav-link href="{{ route('SintomasIndex')}}" :active="request()->routeIs('SintomasIndex')">
-                            Sintomas registrados
+                            Sintomas
                         </x-nav-link>
                     @endif
                     <x-nav-link href="{{ route('PacientesIndex')}}" :active="request()->routeIs('PacientesIndex')">
-                        Pacientes registrados
+                        Pacientes
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('CitasIndex')}}" :active="request()->routeIs('CitasIndex')">
+                        Citas
                     </x-nav-link>
                     <x-nav-link href="{{ route('HistorialesDeConsultaIndex')}}" :active="request()->routeIs('HistorialesDeConsultaIndex')">
                         Historial de consultas

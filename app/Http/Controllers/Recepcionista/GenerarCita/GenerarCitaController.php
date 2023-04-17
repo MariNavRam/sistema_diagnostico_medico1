@@ -12,17 +12,17 @@ use Illuminate\Support\Facades\DB;
 
 class GenerarCitaController extends Controller{
 
-    public function index(Request $request){
+    public function index(){
+        return view("app.recepcionista.citas.index");
+    }
+
+    public function registrar(Request $request){
         if($request->user()->tipo == 'admin' OR $request->user()->tipo == 'recepcionista'){
-            return view("app.recepcionista.citas.index");
+            return view("app.recepcionista.citas.registrar");
         }
         else{
             return view("app.usuario_no_autorizado.index");
         }  
-    }
-
-    public function registrar(){
-        return view("app.recepcionista.citas.registrar");
     }
 
     public function agregar(Request $request){

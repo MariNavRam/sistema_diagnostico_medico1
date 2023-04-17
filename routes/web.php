@@ -37,9 +37,14 @@ Route::get('/tratamientos',[
     'as' => 'TratamientosIndex'
 ]);
 
-Route::get('/generar_cita',[
+Route::get('/citas',[
     'uses' => 'App\Http\Controllers\Recepcionista\GenerarCita\GenerarCitaController@index',
-    'as' => 'GenerarCitaIndex'
+    'as' => 'CitasIndex'
+]);
+
+Route::get('/crear_cita',[
+    'uses' => 'App\Http\Controllers\Recepcionista\GenerarCita\GenerarCitaController@registrar',
+    'as' => 'CrearCita'
 ]);
 
 Route::get('/pacientes',[
