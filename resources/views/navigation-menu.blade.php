@@ -15,9 +15,11 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('DiagnosticosIndex')}}" :active="request()->routeIs('DiagnosticosIndex')">
-                        Diagnósticos
-                    </x-nav-link>
+                    @if(request()->user()->tipo == 'admin' OR request()->user()->tipo == 'medico')
+                        <x-nav-link href="{{ route('DiagnosticosIndex')}}" :active="request()->routeIs('DiagnosticosIndex')">
+                            Diagnósticos
+                        </x-nav-link>
+                    @endif
                     @if(request()->user()->tipo == 'admin')
                         <x-nav-link href="{{ route('UsuariosIndex')}}" :active="request()->routeIs('UsuariosIndex')">
                             Usuarios registrados
