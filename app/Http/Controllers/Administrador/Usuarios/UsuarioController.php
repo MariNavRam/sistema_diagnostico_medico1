@@ -21,12 +21,25 @@ class UsuarioController extends Controller{
         }
     }
 
-    public function registrar(){
-        return view("app.administrador.usuarios.registrar");
+    public function registrar(Request $request){
+        if($request->user()->tipo == 'admin'){
+            return view("app.administrador.usuarios.registrar");
+        }
+        else{
+            return view("app.usuario_no_autorizado.index");
+        }
+        
     }
 
     public function agregar(Request $request){
-        
+        $data = $request->all();
+        $user = new User();
+        $user->name = $data['nombre'];
+        $user->email = $data['correo'];
+        $user->tipo = $data['tipo'];
+        $user->password = bcrypt('new_password');
+        $user->save();
+        return redirect()->route('UsuariosIndex')->with('message', '¡Se agregó el nuevo usuario con éxito!');
     }
 
     public function editar($id){

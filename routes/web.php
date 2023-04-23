@@ -67,6 +67,11 @@ Route::get('/registrar_usuario',[
     'as' => 'RegistrarUsuario'
 ]);
 
+Route::post('/agregar_usuario',[
+    'uses' => 'App\Http\Controllers\Administrador\Usuarios\UsuarioController@agregar',
+    'as' => 'AgregarUsuario'
+]);
+
 Route::get('/enfermedades',[
     'uses' => 'App\Http\Controllers\Administrador\Enfermedades\EnfermedadesController@index',
     'as' => 'EnfermedadesIndex'
