@@ -102,6 +102,11 @@ Route::get('/registrar_sintomas',[
     'as' => 'RegistrarSintoma'
 ]);
 
+Route::post('/agregar_sintomas',[
+    'uses' => 'App\Http\Controllers\Administrador\Sintomas\SintomasController@agregar',
+    'as' => 'AgregarSintoma'
+]);
+
 Route::get('/historiales_de_consulta',[
     'uses' => 'App\Http\Controllers\Recepcionista\HistorialConsulta\HistorialConsultaController@index',
     'as' => 'HistorialesDeConsultaIndex'
