@@ -9,12 +9,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use App\Models\Sintoma;
 
 class SintomasController extends Controller{
 
     public function index(Request $request){
         if($request->user()->tipo == 'admin'){
-            return view("app.administrador.sintomas.index");
+            $sintomas = Sintoma::all();
+            return view("app.administrador.sintomas.index",["sintomas"=>$sintomas]);
         }
         else{
             return view("app.usuario_no_autorizado.index");

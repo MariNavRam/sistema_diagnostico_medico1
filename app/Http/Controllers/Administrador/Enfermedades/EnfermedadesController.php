@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\Administrador\Enfermedades;
 
-//use App\ISR;
-//use App\Premio;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use App\Models\Enfermedad;
 
 class EnfermedadesController extends Controller{
 
     public function index(Request $request){
         if($request->user()->tipo == 'admin'){
-            return view("app.administrador.enfermedades.index");
+            $enfermedades = Enfermedad::all();
+            //dd($enfermedades);
+            return view("app.administrador.enfermedades.index",["enfermedades"=>$enfermedades]);
         }
         else{
             return view("app.usuario_no_autorizado.index");

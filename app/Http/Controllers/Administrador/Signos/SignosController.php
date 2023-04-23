@@ -9,12 +9,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use App\Models\Signo;
 
 class SignosController extends Controller{
 
     public function index(Request $request){
         if($request->user()->tipo == 'admin'){
-            return view("app.administrador.signos.index");
+            $signos = Signo::all();
+            return view("app.administrador.signos.index",["signos"=>$signos]);
         }
         else{
             return view("app.usuario_no_autorizado.index");

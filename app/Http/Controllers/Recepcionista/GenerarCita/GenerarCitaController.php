@@ -9,11 +9,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use App\Models\Cita;
 
 class GenerarCitaController extends Controller{
 
     public function index(){
-        return view("app.recepcionista.citas.index");
+        $citas = Cita::all();
+        return view("app.recepcionista.citas.index",["citas"=>$citas]);
     }
 
     public function registrar(Request $request){

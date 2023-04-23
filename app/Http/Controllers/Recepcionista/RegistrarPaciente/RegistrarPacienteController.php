@@ -9,11 +9,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use App\Models\Paciente;
 
 class RegistrarPacienteController extends Controller{
 
     public function index(Request $request){
-        return view("app.recepcionista.pacientes.index");
+        $pacientes = Paciente::all();
+        return view("app.recepcionista.pacientes.index",["pacientes"=>$pacientes]);
     }
 
     public function registrar(){

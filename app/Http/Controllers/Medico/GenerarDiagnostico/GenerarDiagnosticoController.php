@@ -9,12 +9,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use App\Models\Diagnostico;
 
 class GenerarDiagnosticoController extends Controller{
 
     public function index(Request $request){
         if($request->user()->tipo == 'admin' OR $request->user()->tipo == 'medico'){
-            return view("app.medico.diagnosticos.index");
+            $diagnosticos = Diagnostico::all();
+            return view("app.medico.diagnosticos.index", ["diagnosticos"=>$diagnosticos]);
         }
         else{
             return view("app.usuario_no_autorizado.index");

@@ -28,48 +28,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <td class="border border-slate-700 ...">24/10/2023</td>
-                        <td class="border border-slate-700 ...">Américas</td>
-                        <td class="border border-slate-700 ...">11:00</td>
-                        <td class="border border-slate-700 ...">Paulina Ramos Pártida</td>
-                        <td class="border border-slate-700 ...">Clementine</td>
-                        <td class="border border-slate-700 ...">Pendiente</td>
-                        @if(request()->user()->tipo == 'admin' OR request()->user()->tipo == 'recepcionista')
-                            <td>
-                                <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-0.5 text-center mr-2 mb-2 ">Editar</button>
-                                <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-2 py-0.5 text-center mr-2 mb-2">Eliminar</button>
-                            </td>
-                        @endif
-                        </tr>
-                        <tr>
-                        <td class="border border-slate-700 ...">24/10/2023</td>
-                        <td class="border border-slate-700 ...">Américas</td>
-                        <td class="border border-slate-700 ...">12:00</td>
-                        <td class="border border-slate-700 ...">Julio Zepeda Navarrete</td>
-                        <td class="border border-slate-700 ...">Gabriel Pérez</td>
-                        <td class="border border-slate-700 ...">Pendiente</td>
-                        @if(request()->user()->tipo == 'admin' OR request()->user()->tipo == 'recepcionista')
-                            <td>
-                                <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-0.5 text-center mr-2 mb-2 ">Editar</button>
-                                <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-2 py-0.5 text-center mr-2 mb-2">Eliminar</button>
-                            </td>
-                        @endif
-                        </tr>
-                        <tr>
-                        <td class="border border-slate-700 ...">25/10/2023</td>
-                        <td class="border border-slate-700 ...">Nueva Galicia</td>
-                        <td class="border border-slate-700 ...">10:00</td>
-                        <td class="border border-slate-700 ...">Gónzalo Alarcón Mexia</td>
-                        <td class="border border-slate-700 ...">Clementine</td>
-                        <td class="border border-slate-700 ...">Pendiente</td>
-                        @if(request()->user()->tipo == 'admin' OR request()->user()->tipo == 'recepcionista')
-                            <td>
-                                <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-0.5 text-center mr-2 mb-2 ">Editar</button>
-                                <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-2 py-0.5 text-center mr-2 mb-2">Eliminar</button>
-                            </td>
-                        @endif
-                        </tr>
+                        @foreach($citas as $cita)
+                            <tr>
+                            <td class="border border-slate-700 ...">{{ $cita->fecha }}</td>
+                            <td class="border border-slate-700 ...">{{ $cita->consultorio->nombre }}</td>
+                            <td class="border border-slate-700 ...">{{ $cita->hora }}</td>
+                            <td class="border border-slate-700 ...">{{ $cita->paciente->nombre_completo() ?? 'Te falta la relación con paciente' }}</td>
+                            <td class="border border-slate-700 ...">{{ $cita->medico->nombre_completo() }}</td>
+                            <td class="border border-slate-700 ...">{{ $cita->estado_de_cita }}</td>
+                            @if(request()->user()->tipo == 'admin' OR request()->user()->tipo == 'recepcionista')
+                                <td>
+                                    <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-0.5 text-center mr-2 mb-2 ">Editar</button>
+                                    <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-2 py-0.5 text-center mr-2 mb-2">Eliminar</button>
+                                </td>
+                            @endif
+                            </tr>
+                        @endforeach
+                        
                     </tbody>
                 </table>
             </div>
