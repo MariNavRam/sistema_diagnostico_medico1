@@ -8,7 +8,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Registrar usuarios
+            Registrar síntomas
         </h2>
     </x-slot>
     
@@ -21,7 +21,7 @@
                         @csrf
                         <div class="mb-9">
                             <label class="block text-gray-700 text-sm font-bold mb-2">
-                                Sintoma
+                                Síntoma
                             </label>
                             <input id="sintoma" name="sintoma" type="text" value="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-control">
                         </div>

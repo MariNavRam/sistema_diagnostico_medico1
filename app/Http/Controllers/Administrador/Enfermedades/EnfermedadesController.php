@@ -23,12 +23,23 @@ class EnfermedadesController extends Controller{
     	
     }
 
-    public function registrar(){
-        return view("app.administrador.enfermedades.registrar");
+    public function registrar(Request $request){
+        if($request->user()->tipo == 'admin'){
+            return view("app.administrador.enfermedades.registrar");
+        }
+        else{
+            return view("app.usuario_no_autorizado.index");
+        }
+        
     }
 
     public function agregar(Request $request){
-        
+        $data = $request->all();
+        $enfermedad = new Enfermedad();
+        $enfermedad->nombre = $data['enfermedad'];
+        $enfermedad->causa = $data['causa'];
+        $enfermedad->save();
+        return redirect()->route('EnfermedadesIndex')->with('message', '¡Se agregó el nuevo síntoma con éxito!');
     }
 
     public function editar($id){

@@ -82,6 +82,11 @@ Route::get('/registrar_enfermedad',[
     'as' => 'RegistrarEnfermedad'
 ]);
 
+Route::post('/agregar_enfermedad',[
+    'uses' => 'App\Http\Controllers\Administrador\Enfermedades\EnfermedadesController@agregar',
+    'as' => 'AgregarEnfermedad'
+]);
+
 Route::get('/signos',[
     'uses' => 'App\Http\Controllers\Administrador\Signos\SignosController@index',
     'as' => 'SignosIndex'
