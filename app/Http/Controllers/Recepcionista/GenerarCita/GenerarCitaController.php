@@ -66,4 +66,17 @@ class GenerarCitaController extends Controller{
     public function eliminar($id){
 
     }
+
+    public function cambiar_estado_de_cita(){
+        $cita_id = json_decode($_GET["id"]);
+        $cita = Cita::where('id',$_GET["id"])->get()->first();
+        if($cita != null){
+            $cita->estado_de_cita = $_GET["estado"];
+            $cita->save();
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
 }
