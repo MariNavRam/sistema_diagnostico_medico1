@@ -1,52 +1,64 @@
+
+
+<script>
+    console.log("test");
+    Swal.fire('Test!', 'Hello test message','success');
+</script>
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             Registrar paciente
         </h2>
     </x-slot>
-
+    
     <div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col justify-center items-center">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="w-full max-w-xs">
-                    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-9">
+                    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-9"
+                    action="{{ route('AgregarPaciente') }}" method="POST">
+                        @csrf
                         <div class="mb-9">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                                Nombre(s)
+                            <label class="block text-gray-700 text-sm font-bold mb-2">
+                                Nombre
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Ximena Alejandra">
-                        </div>
-                        <div class="mb-9">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                                Apellido paterno
-                            </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Partida">
-                        </div>
-                        <div class="mb-9">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                                Apellido materno
-                            </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Zepeda">
-                        </div>
-                        <div class="mb-9">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                                Celular
-                            </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="number" placeholder="3325269874">
+                            <input id="nombre" name="nombre" type="text" value="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-control">
                         </div>
                         <div class="mb-9">
                             <label class="block text-gray-700 text-sm font-bold mb-2">
-                                Dirección
+                                Apellido paterno
                             </label>
-                            <textarea id="story" name="story" rows="5" cols="23">
+                            <input id="apellido_paterno" name="apellido_paterno" type="text" value="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-control">
+                        </div>
+                        <div class="mb-9">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">
+                                Apellido materno
+                            </label>
+                            <input id="apellido_materno" name="apellido_materno" type="text" value="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-control">
+                        </div>
+                        <div class="mb-9">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">
+                               Dirección
+                            </label>
+                            <textarea id="direccion" name="direccion" type="text" value="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-control">
+
                             </textarea>
                         </div>
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                            <a href="{{route('PacientesIndex')}}">Registrar</a>
-                        </button>
-                        
-                    </form>
-                    
+                        <div class="mb-9">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">
+                                Teléfono
+                            </label>
+                            <input id="telefono" name="telefono" type="number" value="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-control">
+                        </div>
+                        <div>
+                            <button 
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                            type="submit"
+                            value="Registrar">Registrar
+                            </button>
+                        </div>
+                    </form>    
                 </div>
             </div>
         </div>

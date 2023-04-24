@@ -23,7 +23,15 @@ class RegistrarPacienteController extends Controller{
     }
 
     public function agregar(Request $request){
-        
+        $data = $request->all();
+        $paciente = new Paciente();
+        $paciente->nombre = $data['nombre'];
+        $paciente->apellido_paterno = $data['apellido_paterno'];
+        $paciente->apellido_materno = $data['apellido_materno'];
+        $paciente->direccion = $data['direccion'];
+        $paciente->telefono = $data['telefono'];
+        $paciente->save();
+        return redirect()->route('PacientesIndex')->with('message', '¡Se agregó el nuevo usuario con éxito!');
     }
 
     public function editar($id){
