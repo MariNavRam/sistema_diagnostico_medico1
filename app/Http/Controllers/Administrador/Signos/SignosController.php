@@ -23,12 +23,23 @@ class SignosController extends Controller{
         }
     }
 
-    public function registrar(){
-        return view("app.administrador.signos.registrar");
+    public function registrar(Request $request){
+        if($request->user()->tipo == 'admin'){
+            return view("app.administrador.signos.registrar");
+        }
+        else{
+            return view("app.usuario_no_autorizado.index");
+        }
+        
     }
 
     public function agregar(Request $request){
-        
+        $data = $request->all();
+        $signo = new Signo();
+        $signo->nombre = $data['signo'];
+        $signo->descripcion = $data['descripcion'];
+        $signo->save();
+        return redirect()->route('SignosIndex')->with('message', '¡Se agregó el nuevo signo con éxito!');
     }
 
     public function editar($id){

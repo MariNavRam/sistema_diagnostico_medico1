@@ -97,6 +97,11 @@ Route::get('/registrar_signos',[
     'as' => 'RegistrarSigno'
 ]);
 
+Route::post('/agregar_signos',[
+    'uses' => 'App\Http\Controllers\Administrador\Signos\SignosController@agregar',
+    'as' => 'AgregarSigno'
+]);
+
 Route::get('/sintomas',[
     'uses' => 'App\Http\Controllers\Administrador\Sintomas\SintomasController@index',
     'as' => 'SintomasIndex'
