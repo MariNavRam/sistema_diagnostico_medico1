@@ -47,6 +47,11 @@ Route::get('/crear_cita',[
     'as' => 'CrearCita'
 ]);
 
+Route::post('/agregar_cita',[
+    'uses' => 'App\Http\Controllers\Recepcionista\GenerarCita\GenerarCitaController@agregar',
+    'as' => 'AgregarCita'
+]);
+
 Route::get('/pacientes',[
     'uses' => 'App\Http\Controllers\Recepcionista\RegistrarPaciente\RegistrarPacienteController@index',
     'as' => 'PacientesIndex'

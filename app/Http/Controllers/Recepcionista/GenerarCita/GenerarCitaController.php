@@ -10,6 +10,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use App\Models\Cita;
+use App\Models\Consultorio;
+use App\Models\Paciente;
+use App\Models\User;
+use App\Models\Medico;
 
 class GenerarCitaController extends Controller{
 
@@ -20,7 +24,15 @@ class GenerarCitaController extends Controller{
 
     public function registrar(Request $request){
         if($request->user()->tipo == 'admin' OR $request->user()->tipo == 'recepcionista'){
-            return view("app.recepcionista.citas.registrar");
+            $consultorios = Consultorio::all();
+            $pacientes = Paciente::all();
+            $medicos = Medico::all();
+            return view("app.recepcionista.citas.registrar",
+            [
+                "consultorios"=>$consultorios, 
+                "pacientes"=>$pacientes,
+                "medicos"=>$medicos
+            ]);
         }
         else{
             return view("app.usuario_no_autorizado.index");
@@ -28,7 +40,19 @@ class GenerarCitaController extends Controller{
     }
 
     public function agregar(Request $request){
-        
+        $data = $request->all();
+        $paciente = Paciente::where('id',$data['paciente'])->get()->first();
+        $medico = Medico::where('id',$data['medico'])->get()->first();
+        $consultorio = Consultorio::where('id',$data['consultorio'])->get()->first();
+        $cita = new Cita();
+        $cita->fecha = $data['fecha'];
+        $cita->hora = $data['hora'];
+        $cita->consultorio_id = $consultorio->id;
+        $cita->paciente_id = $paciente->id;
+        $cita->medico_id = $medico->id;
+        $cita->estado_de_cita = 'Pendiente';
+        $cita->save();
+        return redirect()->route('CitasIndex')->with('message', '¡Se creó la nueva cita con éxito!');
     }
 
     public function editar($id){

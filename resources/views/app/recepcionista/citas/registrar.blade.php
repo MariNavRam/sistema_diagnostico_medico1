@@ -1,105 +1,86 @@
+
+
+<script>
+    console.log("test");
+    Swal.fire('Test!', 'Hello test message','success');
+</script>
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-           Registrar cita
+            Registro de cita
         </h2>
     </x-slot>
-
+    
     <div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col justify-center items-center">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="w-full max-w-xs">
-                    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-9">
+                    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-9"
+                    action="{{ route('AgregarCita') }}" method="POST">
+                        @csrf
                         <div class="mb-9">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                                Nombre
+                            <label class="block text-gray-700 text-sm font-bold mb-2">
+                                Fecha
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username">
+                            <input id="fecha" name="fecha" type="date" value="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-control">
                         </div>
                         <div class="mb-9">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                                Clasificación
+                            <label class="block text-gray-700 text-sm font-bold mb-2">
+                                Hora
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username">
+                            <input id="hora" name="hora" type="time" value="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-control">
                         </div>
                         <div class="mb-9">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                                Signos
+                            <label class="block text-gray-700 text-sm font-bold mb-2">
+                                Consultorio
                             </label>
-                            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
-                            <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected>Selecciona un signo</option>
-                                <option value="US">Signo 1</option>
-                                <option value="CA">Signo 2</option>
-                                <option value="FR">Signo 3</option>
-                                <option value="DE">Signo 4</option>
+                            <label for="consultorio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una opción</label>
+                            
+                            <select id="consultorio" name="consultorio" type="text" value="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-control">
+                                <option selected>Selecciona una opción</option>
+                                @foreach($consultorios as $consultorio)
+                                    <option value="{{ $consultorio->id }}">{{ $consultorio->nombre }}</option>
+                                @endforeach
                             </select>
-                            <div class="inline-flex">
-                                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">
-                                    Agregar
-                                </button>
-                                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
-                                    Quitar
-                                </button>
-                                </div>
+                            <br>
                         </div>
-
                         <div class="mb-9">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                                Sintomas
+                            <label class="block text-gray-700 text-sm font-bold mb-2">
+                                Paciente
                             </label>
-                            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
-                            <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected>Selecciona un sintoma</option>
-                                <option value="US">Sintoma 1</option>
-                                <option value="CA">Sintoma 2</option>
-                                <option value="FR">Sintoma 3</option>
-                                <option value="DE">Sintoma 4</option>
+                            <label for="paciente" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una opción</label>
+                            
+                            <select id="paciente" name="paciente" type="text" value="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-control">
+                                <option selected>Selecciona una opción</option>
+                                @foreach($pacientes as $paciente)
+                                    <option value="{{ $paciente->id }}">{{ $paciente->nombre_completo() }}</option>
+                                @endforeach
                             </select>
-                            <div class="inline-flex">
-                                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">
-                                    Agregar
-                                </button>
-                                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
-                                    Quitar
-                                </button>
-                                </div>
+                            <br>
                         </div>
-
                         <div class="mb-9">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                                Prueba de laboratorio
+                            <label class="block text-gray-700 text-sm font-bold mb-2">
+                                Médico
                             </label>
-                            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
-                            <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected>Selecciona una prueba de laboratorio</option>
-                                <option value="US">Prueba 1</option>
-                                <option value="CA">Prueba 2</option>
-                                <option value="FR">Prueba 3</option>
-                                <option value="DE">Prueba 4</option>
+                            <label for="medico" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una opción</label>
+                            
+                            <select id="medico" name="medico" type="text" value="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-control">
+                                <option selected>Selecciona una opción</option>
+                                @foreach($medicos as $medico)
+                                    <option value="{{ $medico->id }}">{{ $medico->nombre_completo() }}</option>
+                                @endforeach
                             </select>
+                            <br>
                         </div>
-
-                        <div class="mb-9">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                                Prueba post-mortem
-                            </label>
-                            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
-                            <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected>Selecciona una prueba de laboratorio</option>
-                                <option value="US">Prueba 1</option>
-                                <option value="CA">Prueba 2</option>
-                                <option value="FR">Prueba 3</option>
-                                <option value="DE">Prueba 4</option>
-                            </select>
+                        <div>
+                            <button 
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                            type="submit"
+                            value="Registrar">Registrar
+                            </button>
                         </div>
-                        
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                            Generar
-                        </button>
-                        
-                    </form>
-                    
+                    </form>    
                 </div>
             </div>
         </div>
