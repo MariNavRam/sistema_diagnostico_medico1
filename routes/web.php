@@ -27,8 +27,28 @@ Route::get('/diagnosticos',[
     'as' => 'DiagnosticosIndex'
 ]);
 
-Route::get('/generar_diagnostico',[
+Route::get('/crear_diagnostico',[
     'uses' => 'App\Http\Controllers\Medico\GenerarDiagnostico\GenerarDiagnosticoController@registrar',
+    'as' => 'CrearDiagnostico'
+]);
+
+Route::get('/add_signo_a_tabla',[
+    'uses' => 'App\Http\Controllers\Medico\GenerarDiagnostico\GenerarDiagnosticoController@add_signo_a_tabla',
+    'as' => 'AgregarSignoATabla'
+]);
+
+Route::get('/add_sintoma_a_tabla',[
+    'uses' => 'App\Http\Controllers\Medico\GenerarDiagnostico\GenerarDiagnosticoController@add_sintoma_a_tabla',
+    'as' => 'AgregarSintomaATabla'
+]);
+
+Route::get('/add_prueba_a_tabla',[
+    'uses' => 'App\Http\Controllers\Medico\GenerarDiagnostico\GenerarDiagnosticoController@add_prueba_a_tabla',
+    'as' => 'AgregarPruebaATabla'
+]);
+
+Route::post('/generar_diagnostico',[
+    'uses' => 'App\Http\Controllers\Medico\GenerarDiagnostico\GenerarDiagnosticoController@agregar',
     'as' => 'GenerarDiagnostico'
 ]);
 
