@@ -16,8 +16,10 @@
 	        data: parametros,
 	        success: function(data){
                 console.log("Función éxitosa");
-	            $('#signos').html(data);
                 document.getElementById("signos_ids").value = JSON.stringify(signos);
+                console.log("Signos hasta el momento");
+                console.log(signos);
+                $('#signos').html(data);
 	        },
             error: function(data){
                 console.log("Error");
@@ -39,8 +41,10 @@
 	        data: parametros,
 	        success: function(data){
                 console.log("Función éxitosa");
-	            $('#signos').html(data);
                 document.getElementById("signos_ids").value = JSON.stringify(signos);
+	            $('#signos').html(data);
+                console.log("Signos hasta el momento");
+                console.log(signos);
 	        },
             error: function(data){
                 console.log("Error");
@@ -61,8 +65,10 @@
 	        data: parametros,
 	        success: function(data){
                 console.log("Función éxitosa");
-	            $('#sintomas').html(data);
                 document.getElementById("sintomas_ids").value = JSON.stringify(sintomas);
+	            $('#sintomas').html(data);
+                console.log("Sintomas hasta el momento");
+                console.log(sintomas);
 	        },
             error: function(data){
                 console.log("Error");
@@ -86,6 +92,8 @@
                 console.log("Función éxitosa");
 	            $('#sintomas').html(data);
                 document.getElementById("sintomas_ids").value = JSON.stringify(sintomas);
+                console.log("Sintomas hasta el momento");
+                console.log(sintomas);
 	        },
             error: function(data){
                 console.log("Error");
@@ -108,6 +116,8 @@
                 console.log("Función éxitosa");
 	            $('#pruebas').html(data);
                 document.getElementById("pruebas_ids").value = JSON.stringify(pruebas);
+                console.log("Pruebas hasta el momento");
+                console.log(pruebas);
 	        },
             error: function(data){
                 console.log("Error");
@@ -131,6 +141,8 @@
                 console.log("Función éxitosa");
 	            $('#pruebas').html(data);
                 document.getElementById("pruebas_ids").value = JSON.stringify(pruebas);
+                console.log("Pruebas hasta el momento");
+                console.log(pruebas);
 	        },
             error: function(data){
                 console.log("Error");
@@ -251,7 +263,7 @@
                     </div>
                     
                     
-                    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-9"
+                    <form id="formulario" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-9"
                     action="{{ route('GenerarDiagnostico') }}" method="POST">
                         @csrf
                         <input type="hidden" id="signos_ids" name="signos_ids" value="" />
@@ -269,7 +281,7 @@
                             <select id="paciente" name="paciente" type="text" value="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-control">
                                 <option value="-1">Selecciona un paciente</option> 
                                 @foreach($pacientes as $paciente)
-                                    <option value="{{ $paciente->id }}">{{ $paciente->nombre }}</option>
+                                    <option value="{{ $paciente->id }}">{{ $paciente->nombre_completo() }}</option>
                                 @endforeach
                             </select>
                         </div>
