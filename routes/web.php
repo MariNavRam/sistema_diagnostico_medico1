@@ -122,6 +122,26 @@ Route::post('/agregar_enfermedad',[
     'as' => 'AgregarEnfermedad'
 ]);
 
+Route::get('/enfermedades_add_signo_a_tabla',[
+    'uses' => 'App\Http\Controllers\Administrador\Enfermedades\EnfermedadesController@add_signo_a_tabla',
+    'as' => 'EnfermedadesAgregarSignoATabla'
+]);
+
+Route::get('/enfermedades_add_sintoma_a_tabla',[
+    'uses' => 'App\Http\Controllers\Administrador\Enfermedades\EnfermedadesController@add_sintoma_a_tabla',
+    'as' => 'EnfermedadesAgregarSintomaATabla'
+]);
+
+Route::get('/enfermedades_add_prueba_a_tabla',[
+    'uses' => 'App\Http\Controllers\Administrador\Enfermedades\EnfermedadesController@add_prueba_a_tabla',
+    'as' => 'EnfermedadesAgregarPruebaATabla'
+]);
+
+Route::get('/enfermedades_add_tratamiento_a_tabla',[
+    'uses' => 'App\Http\Controllers\Administrador\Enfermedades\EnfermedadesController@add_tratamiento_a_tabla',
+    'as' => 'EnfermedadesAgregarTratamientoATabla'
+]);
+
 Route::get('/signos',[
     'uses' => 'App\Http\Controllers\Administrador\Signos\SignosController@index',
     'as' => 'SignosIndex'
