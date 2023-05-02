@@ -20,8 +20,8 @@
     <tbody>
         @foreach($signos as $key => $signo)
             <tr>
-                <td>{{ $key+1 }}</td>
-                <td>{{ $signo->nombre }}</td>                      
+                <td class="text-md px-6 py-4">{{ $key+1 }}</td>
+                <td class="text-md px-6 py-4">{{ $signo->nombre }}</td>                      
             </tr>
         @endforeach
     </tbody>

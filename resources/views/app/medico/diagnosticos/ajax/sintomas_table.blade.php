@@ -20,8 +20,8 @@
     <tbody>
         @foreach($sintomas as $key => $sintoma)
             <tr>
-                <td>{{ $key+1 }}</td>
-                <td>{{ $sintoma->nombre }}</td>                      
+                <td class="text-md px-6 py-4">{{ $key+1 }}</td>
+                <td class="text-md px-6 py-4">{{ $sintoma->nombre }}</td>                      
             </tr>
         @endforeach
     </tbody>

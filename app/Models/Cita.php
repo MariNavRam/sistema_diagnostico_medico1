@@ -13,7 +13,7 @@ class Cita extends Model
     }
 
     public function medico(){
-        return $this->belongsTo(Medico::class,'medico_id');
+        return $this->belongsTo(User::class,'medico_id');
     }
 
     public function paciente(){

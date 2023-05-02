@@ -26,7 +26,7 @@ class GenerarCitaController extends Controller{
         if($request->user()->tipo == 'admin' OR $request->user()->tipo == 'recepcionista'){
             $consultorios = Consultorio::all();
             $pacientes = Paciente::all();
-            $medicos = Medico::all();
+            $medicos = User::where('tipo','medico')->get();
             return view("app.recepcionista.citas.registrar",
             [
                 "consultorios"=>$consultorios, 
@@ -42,7 +42,7 @@ class GenerarCitaController extends Controller{
     public function agregar(Request $request){
         $data = $request->all();
         $paciente = Paciente::where('id',$data['paciente'])->get()->first();
-        $medico = Medico::where('id',$data['medico'])->get()->first();
+        $medico = User::where('id',$data['medico'])->get()->first();
         $consultorio = Consultorio::where('id',$data['consultorio'])->get()->first();
         $cita = new Cita();
         $cita->fecha = $data['fecha'];

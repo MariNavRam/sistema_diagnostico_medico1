@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use App\Models\Diagnostico;
+use App\Models\Cita;
+use App\Models\User;
 use App\Models\Paciente;
 use App\Models\Signo;
 use App\Models\SignoEnfermedad;
@@ -31,24 +33,37 @@ class GenerarDiagnosticoController extends Controller{
         }     
     }
 
-    public function registrar(){
-        $pacientes = Paciente::all()->sortBy('nombre');
-        $signos = Signo::All()->sortBy('nombre');
-        $sintomas = Sintoma::All()->sortBy('nombre');
-        $pruebas_de_laboratorio = PruebaDeLaboratorio::all()->sortBy('nombre');
-        return view("app.medico.diagnosticos.registrar", 
-                        ["pacientes"=>$pacientes,
+    public function registrar(Request $request){
+        if($request->user()->tipo == 'admin' OR $request->user()->tipo == 'medico'){
+            $usuario = User::where('name',$request->user()->name)->first();
+            //dd($usuario);
+            if($usuario->tipo == 'admin'){
+                $citas = Cita::all()->sortBy('fecha');
+            }
+            else{
+                $citas = Cita::where('medico_id', $usuario->id)->get();
+            }
+            $signos = Signo::All()->sortBy('nombre');
+            $sintomas = Sintoma::All()->sortBy('nombre');
+            $pruebas_de_laboratorio = PruebaDeLaboratorio::all()->sortBy('nombre');
+            return view("app.medico.diagnosticos.registrar", 
+                        ["citas"=>$citas,
                         "signos"=>$signos,
                         "sintomas"=>$sintomas,
                         "pruebas_de_laboratorio"=>$pruebas_de_laboratorio]);
+        }
+        else{
+            return view("app.usuario_no_autorizado.index");
+        }
     }
 
     public function agregar(Request $request){
         $datos = $request->all();
+        //dd($datos);
         $signos_ids = json_decode($datos["signos_ids"]);
         $sintomas_ids = json_decode($datos["sintomas_ids"]);
         $pruebas_ids = json_decode($datos["pruebas_ids"]);
-        $paciente = Paciente::find($datos["paciente"]);
+        $cita = Cita::find($datos["cita"]);
         
         $posibles_enfermedades = array();
 
@@ -91,12 +106,16 @@ class GenerarDiagnosticoController extends Controller{
         $moda = array_search(max($valores), $valores);
         
         if($moda == 0){
-            return view("app.medico.diagnosticos.consulta",["paciente"=>$paciente,"enfermedad"=>null,"tratamientos"=>null]);
+            return view("app.medico.diagnosticos.consulta",["cita"=>$cita,"enfermedad"=>null,"tratamientos"=>null]);
         }
         else{
             $enfermedad = Enfermedad::find($moda);
             $tratamientos = TratamientoEnfermedad::where('enfermedad_id',$enfermedad->id)->get();
-            return view("app.medico.diagnosticos.consulta",["paciente"=>$paciente,"enfermedad"=>$enfermedad,"tratamientos"=>$tratamientos]);
+            $diagnostico = new Diagnostico();
+            $diagnostico->id_enfermedad = $enfermedad->id;
+            $diagnostico->id_cita = $cita->id;
+            $diagnostico->save();
+            return view("app.medico.diagnosticos.consulta",["cita"=>$cita,"enfermedad"=>$enfermedad,"tratamientos"=>$tratamientos]);
         }
     }
 

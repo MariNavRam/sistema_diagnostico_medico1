@@ -58,7 +58,7 @@
                             <td class="border border-slate-700 ...">{{ $cita->consultorio->nombre }}</td>
                             <td class="border border-slate-700 ...">{{ $cita->hora }}</td>
                             <td class="border border-slate-700 ...">{{ $cita->paciente->nombre_completo() ?? 'Te falta la relación con paciente' }}</td>
-                            <td class="border border-slate-700 ...">{{ $cita->medico->nombre_completo() }}</td>
+                            <td class="border border-slate-700 ...">{{ $cita->medico->name }}</td>
                             @if(request()->user()->tipo == 'admin' OR request()->user()->tipo == 'medico')
                             <td class="border border-slate-700 ...">
                                 <select onchange="cambio_de_estado({{$cita->id}}, value)" id="estado_de_cita_{{$key}}" name="estado_de_cita_{{$key}}" type="text" value="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-control">

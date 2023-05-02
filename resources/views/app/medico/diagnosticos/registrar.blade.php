@@ -271,17 +271,17 @@
                         <input type="hidden" id="pruebas_ids" name="pruebas_ids" value="" />
                         <div class="mb-9">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                                Paciente
+                                Citas
                             </label>
                             
                         </div>
                         
 
                         <div class="mb-9">
-                            <select id="paciente" name="paciente" type="text" value="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-control">
-                                <option value="-1">Selecciona un paciente</option> 
-                                @foreach($pacientes as $paciente)
-                                    <option value="{{ $paciente->id }}">{{ $paciente->nombre_completo() }}</option>
+                            <select id="cita" name="cita" type="text" value="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-control">
+                                <option value="-1">Selecciona la cita correspondiente</option> 
+                                @foreach($citas as $cita)
+                                    <option value="{{ $cita->id }}">Medico: {{ $cita->medico->name }}; Paciente: {{ $cita->paciente->nombre_completo() }}; Fecha: {{ $cita->fecha }} {{ $cita->hora }}</option>
                                 @endforeach
                             </select>
                         </div>

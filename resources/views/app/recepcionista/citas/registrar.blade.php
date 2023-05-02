@@ -68,7 +68,7 @@
                             <select id="medico" name="medico" type="text" value="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-control">
                                 <option selected>Selecciona una opción</option>
                                 @foreach($medicos as $medico)
-                                    <option value="{{ $medico->id }}">{{ $medico->nombre_completo() }}</option>
+                                    <option value="{{ $medico->id }}">{{ $medico->name }}</option>
                                 @endforeach
                             </select>
                             <br>
