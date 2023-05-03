@@ -42,9 +42,9 @@
 	        success: function(data){
                 console.log("Función éxitosa");
                 document.getElementById("signos_ids").value = JSON.stringify(signos);
-	            $('#signos').html(data);
                 console.log("Signos hasta el momento");
                 console.log(signos);
+                $('#signos').html(data);
 	        },
             error: function(data){
                 console.log("Error");
@@ -66,9 +66,9 @@
 	        success: function(data){
                 console.log("Función éxitosa");
                 document.getElementById("sintomas_ids").value = JSON.stringify(sintomas);
-	            $('#sintomas').html(data);
                 console.log("Sintomas hasta el momento");
                 console.log(sintomas);
+                $('#sintomas').html(data);
 	        },
             error: function(data){
                 console.log("Error");
@@ -90,10 +90,10 @@
 	        data: parametros,
 	        success: function(data){
                 console.log("Función éxitosa");
-	            $('#sintomas').html(data);
                 document.getElementById("sintomas_ids").value = JSON.stringify(sintomas);
                 console.log("Sintomas hasta el momento");
                 console.log(sintomas);
+                $('#sintomas').html(data);
 	        },
             error: function(data){
                 console.log("Error");
@@ -114,10 +114,10 @@
 	        data: parametros,
 	        success: function(data){
                 console.log("Función éxitosa");
-	            $('#pruebas').html(data);
                 document.getElementById("pruebas_ids").value = JSON.stringify(pruebas);
                 console.log("Pruebas hasta el momento");
                 console.log(pruebas);
+                $('#pruebas').html(data);
 	        },
             error: function(data){
                 console.log("Error");
@@ -139,10 +139,10 @@
 	        data: parametros,
 	        success: function(data){
                 console.log("Función éxitosa");
-	            $('#pruebas').html(data);
                 document.getElementById("pruebas_ids").value = JSON.stringify(pruebas);
                 console.log("Pruebas hasta el momento");
                 console.log(pruebas);
+                $('#pruebas').html(data);
 	        },
             error: function(data){
                 console.log("Error");

@@ -150,7 +150,7 @@
                     <h4 class="font-semibold text-xl text-gray-300 dark:text-gray-200 leading-tight">
                         No fue posible determinar la enfermedad que padece {{$cita->paciente->nombre_completo()}}.
                     </h4>
-                    <p class="font-serif">Esto se debe a que no se obtuvo un resultado satisfactorio al momento de usar la base de conocimiento. Puede ser posible conocer el resultado, si se indican parámetros más precisos y concretos a una enfermedad en específico.</p>
+                    <p class="font-serif">Esto se debe a que no se obtuvo un resultado satisfactorio al momento de usar la base de conocimiento. Puede ser posible conocer el resultado si se indican parámetros más precisos y concretos a una enfermedad en específico.</p>
                 @else
                     <h4 class="font-semibold text-xl text-gray-300 dark:text-gray-200 leading-tight">
                         En base a los parámetros ingresados, se determina que la enfermedad que padece {{$cita->paciente->nombre_completo()}} es:

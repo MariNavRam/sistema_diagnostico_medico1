@@ -66,45 +66,68 @@ class GenerarDiagnosticoController extends Controller{
         $cita = Cita::find($datos["cita"]);
         
         $posibles_enfermedades = array();
-
-        foreach($signos_ids as $signo_id){
-            $signos_enfermedades = SignoEnfermedad::where('id_signo',$signo_id)->get();
-            if(count($signos_enfermedades)>0){
-                foreach($signos_enfermedades as $signo_enfermedad){
-                    array_push($posibles_enfermedades, $signo_enfermedad->id_enfermedad);
-                }   
-            }
-            else{
-                array_push($posibles_enfermedades, 0);
-            }
-        }
-
-        foreach($sintomas_ids as $sintoma_id){
-            $sintomas_enfermedades = SintomaEnfermedad::where('id_sintoma',$sintoma_id)->get();
-            if(count($sintomas_enfermedades)>0){
-                foreach($sintomas_enfermedades as $sintoma_enfermedad){
-                    array_push($posibles_enfermedades, $sintoma_enfermedad->id_enfermedad);
-                }   
-            }
-            else{
-                array_push($posibles_enfermedades, 0);
+        if($signos_ids != null){
+             foreach($signos_ids as $signo_id){
+                $signos_enfermedades = SignoEnfermedad::where('id_signo',$signo_id)->get();
+                if(count($signos_enfermedades)>0){
+                    foreach($signos_enfermedades as $signo_enfermedad){
+                        array_push($posibles_enfermedades, $signo_enfermedad->id_enfermedad);
+                    }   
+                }
+                else{
+                    array_push($posibles_enfermedades, 0);
+                }
             }
         }
-
-        foreach($pruebas_ids as $prueba_id){
-            $pruebas_enfermedades = EnfermedadYPruebaDeLaboratorio::where('id_prueba_de_laboratorio',$prueba_id)->get();
-            if(count($pruebas_enfermedades)>0){
-                foreach($pruebas_enfermedades as $prueba_enfermedad){
-                    array_push($posibles_enfermedades, $prueba_enfermedad->id_enfermedad);
-                }   
-            }
-            else{
-                array_push($posibles_enfermedades, 0);
+       
+        if($sintomas_ids != null){
+            foreach($sintomas_ids as $sintoma_id){
+                $sintomas_enfermedades = SintomaEnfermedad::where('id_sintoma',$sintoma_id)->get();
+                if(count($sintomas_enfermedades)>0){
+                    foreach($sintomas_enfermedades as $sintoma_enfermedad){
+                        array_push($posibles_enfermedades, $sintoma_enfermedad->id_enfermedad);
+                    }   
+                }
+                else{
+                    array_push($posibles_enfermedades, 0);
+                }
             }
         }
-        $valores = array_count_values($posibles_enfermedades); 
-        $moda = array_search(max($valores), $valores);
         
+        if($pruebas_ids != null){
+            foreach($pruebas_ids as $prueba_id){
+                $pruebas_enfermedades = EnfermedadYPruebaDeLaboratorio::where('id_prueba_de_laboratorio',$prueba_id)->get();
+                if(count($pruebas_enfermedades)>0){
+                    foreach($pruebas_enfermedades as $prueba_enfermedad){
+                        array_push($posibles_enfermedades, $prueba_enfermedad->id_enfermedad);
+                    }   
+                }
+                else{
+                    array_push($posibles_enfermedades, 0);
+                }
+            }
+        }
+        
+        if(count($posibles_enfermedades) == 0){
+            return view("app.medico.diagnosticos.consulta",["cita"=>$cita,"enfermedad"=>null,"tratamientos"=>null]);
+        }
+       
+        $valores = array_count_values($posibles_enfermedades); 
+        $primer_valor = array_values($valores)[0];
+        $numero_actual = $primer_valor;
+        $todos_tienen_el_mismo_valor = 1;
+        foreach($valores as $valor){
+            if($valor != $numero_actual){
+                $todos_tienen_el_mismo_valor = 0;
+            }
+        }
+        
+        if($todos_tienen_el_mismo_valor == 1){
+            return view("app.medico.diagnosticos.consulta",["cita"=>$cita,"enfermedad"=>null,"tratamientos"=>null]);
+        }
+        
+        $moda = array_search(max($valores), $valores);
+
         if($moda == 0){
             return view("app.medico.diagnosticos.consulta",["cita"=>$cita,"enfermedad"=>null,"tratamientos"=>null]);
         }
