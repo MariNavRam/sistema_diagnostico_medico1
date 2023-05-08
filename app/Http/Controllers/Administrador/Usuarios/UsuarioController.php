@@ -37,20 +37,44 @@ class UsuarioController extends Controller{
         $user->name = $data['nombre'];
         $user->email = $data['correo'];
         $user->tipo = $data['tipo'];
-        $user->password = bcrypt('new_password');
+        $user->password = bcrypt($data['password']);
         $user->save();
         return redirect()->route('UsuariosIndex')->with('message', '¡Se agregó el nuevo usuario con éxito!');
     }
 
     public function editar($id){
-        return view("app.administrador.usuarios.editar");
-    }
+
+        $user = User::find(Crypt::decrypt($id));
+
+        return view("app.administrador.usuarios.editar",
+        [
+            "user" => $user
+        ]);
+
+    } 
 
     public function actualizar(Request $request){
+
+        $data = $request->all();
+       //dd($data);
+        //($data[$id]);
+        $user = User::find($data["id"]);
+        $user->name = $data['nombre'];
+        $user->email = $data["correo"];
+        $user->tipo = $data["tipo"];
+        //$user->password = $data["password"];
+
+        $user->save();
+        return redirect()->route('UsuariosIndex')->with('message', '¡Se editó el usuario con éxito!');
+
 
     }
 
     public function eliminar($id){
+        $user = User::find(Crypt::decrypt($id));
+        $user->delete($id);
+        return redirect()->route('UsuariosIndex')->with('message', '¡Se eliminó el usuario con éxito!');
+
 
     }
 }

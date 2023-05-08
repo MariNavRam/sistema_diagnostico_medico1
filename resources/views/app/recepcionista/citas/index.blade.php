@@ -64,8 +64,13 @@
                                 <select onchange="cambio_de_estado({{$cita->id}}, value)" id="estado_de_cita_{{$key}}" name="estado_de_cita_{{$key}}" type="text" value="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-control">
                                     <option selected>{{ $cita->estado_de_cita }}</option>
                                     @if( $cita->estado_de_cita  == 'Pendiente')
-                                        <option value="Confirmada">Confirmada</option>   
-                                    @else      
+                                        <option value="Confirmada">Confirmada</option> 
+                                        <option value="Cancelada">Cancelada</option>  
+                                    @elseif( $cita->estado_de_cita  == 'Confirmada' )   
+                                        <option value="Pendiente">Pendiente</option>  
+                                        <option value="Cancelada">Cancelada</option>  
+                                    @elseif( $cita->estado_de_cita  == 'Cancelada' )   
+                                        <option value="Confirmada">Confirmada</option>  
                                         <option value="Pendiente">Pendiente</option>  
                                     @endif 
                                 </select>
@@ -76,8 +81,8 @@
                             @endif
                             @if(request()->user()->tipo == 'admin' OR request()->user()->tipo == 'recepcionista')
                                 <td>
-                                    <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-0.5 text-center mr-2 mb-2 ">Editar</button>
-                                    <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-2 py-0.5 text-center mr-2 mb-2">Eliminar</button>
+                                    <a type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-0.5 text-center mr-2 mb-2 " href="{{route('EditarCita',Crypt::encrypt($cita->id))}}">Editar</a>
+                                    <a type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-2 py-0.5 text-center mr-2 mb-2" href="{{route('EliminarCita',Crypt::encrypt($cita->id))}}">Eliminar</a>
                                 </td>
                             @endif
                             </tr>

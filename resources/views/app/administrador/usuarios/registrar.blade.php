@@ -33,6 +33,12 @@
                         </div>
                         <div class="mb-9">
                             <label class="block text-gray-700 text-sm font-bold mb-2">
+                                Contraseña
+                            </label>
+                            <input id="password" name="password" type="password" value="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-control">
+                        </div>
+                        <div class="mb-9">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">
                                 Tipo de usuario
                             </label>
                             <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una opción</label>

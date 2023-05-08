@@ -31,6 +31,19 @@ Route::get('/crear_diagnostico',[
     'uses' => 'App\Http\Controllers\Medico\GenerarDiagnostico\GenerarDiagnosticoController@registrar',
     'as' => 'CrearDiagnostico'
 ]);
+Route::get('/editar_diagnostico/{id}',[
+    'uses' => 'App\Http\Controllers\Medico\GenerarDiagnostico\GenerarDiagnosticoController@editar',
+    'as' => 'EditarDiagnostico'
+]);
+Route::post('/actualizar_diagnostico',[
+    'uses' => 'App\Http\Controllers\Medico\GenerarDiagnostico\GenerarDiagnosticoController@actualizar',
+    'as' => 'ActualizarDiagnostico'
+]);
+Route::get('/eliminar_diagnostico/{id}',[
+    'uses' => 'App\Http\Controllers\Medico\GenerarDiagnostico\GenerarDiagnosticoController@eliminar',
+    'as' => 'EliminarDiagnostico'
+]);
+
 
 Route::get('/add_signo_a_tabla',[
     'uses' => 'App\Http\Controllers\Medico\GenerarDiagnostico\GenerarDiagnosticoController@add_signo_a_tabla',
@@ -71,6 +84,18 @@ Route::post('/agregar_cita',[
     'uses' => 'App\Http\Controllers\Recepcionista\GenerarCita\GenerarCitaController@agregar',
     'as' => 'AgregarCita'
 ]);
+Route::get('/editar_cita/{id}',[
+    'uses' => 'App\Http\Controllers\Recepcionista\GenerarCita\GenerarCitaController@editar',
+    'as' => 'EditarCita'
+]);
+Route::post('/actualizar_cita',[
+    'uses' => 'App\Http\Controllers\Recepcionista\GenerarCita\GenerarCitaController@actualizar',
+    'as' => 'ActualizarCita'
+]);
+Route::get('/eliminar_cita/{id}',[
+    'uses' => 'App\Http\Controllers\Recepcionista\GenerarCita\GenerarCitaController@eliminar',
+    'as' => 'EliminarCita'
+]);
 
 Route::get('/cambiar_estado_de_cita',[
     'uses' => 'App\Http\Controllers\Recepcionista\GenerarCita\GenerarCitaController@cambiar_estado_de_cita',
@@ -91,6 +116,18 @@ Route::post('/agregar_paciente',[
     'uses' => 'App\Http\Controllers\Recepcionista\RegistrarPaciente\RegistrarPacienteController@agregar',
     'as' => 'AgregarPaciente'
 ]);
+Route::get('/editar_paciente/{id}',[
+    'uses' => 'App\Http\Controllers\Recepcionista\RegistrarPaciente\RegistrarPacienteController@editar',
+    'as' => 'EditarPaciente'
+]);
+Route::post('/actualizar_paciente',[
+    'uses' => 'App\Http\Controllers\Recepcionista\RegistrarPaciente\RegistrarPacienteController@actualizar',
+    'as' => 'ActualizarPaciente'
+]);
+Route::get('/eliminar_paciente/{id}',[
+    'uses' => 'App\Http\Controllers\Recepcionista\RegistrarPaciente\RegistrarPacienteController@eliminar',
+    'as' => 'EliminarPaciente'
+]);
 
 Route::get('/usuarios',[
     'uses' => 'App\Http\Controllers\Administrador\Usuarios\UsuarioController@index',
@@ -106,6 +143,18 @@ Route::post('/agregar_usuario',[
     'uses' => 'App\Http\Controllers\Administrador\Usuarios\UsuarioController@agregar',
     'as' => 'AgregarUsuario'
 ]);
+Route::get('/editar_usuario/{id}',[
+    'uses' => 'App\Http\Controllers\Administrador\Usuarios\UsuarioController@editar',
+    'as' => 'EditarUsuario'
+]);
+Route::post('/actualizar_usuario',[
+    'uses' => 'App\Http\Controllers\Administrador\Usuarios\UsuarioController@actualizar',
+    'as' => 'ActualizarUsuario'
+]);
+Route::get('/eliminar_usuario/{id}',[
+    'uses' => 'App\Http\Controllers\Administrador\Usuarios\UsuarioController@eliminar',
+    'as' => 'EliminarUsuario'
+]);
 
 Route::get('/enfermedades',[
     'uses' => 'App\Http\Controllers\Administrador\Enfermedades\EnfermedadesController@index',
@@ -120,6 +169,18 @@ Route::get('/registrar_enfermedad',[
 Route::post('/agregar_enfermedad',[
     'uses' => 'App\Http\Controllers\Administrador\Enfermedades\EnfermedadesController@agregar',
     'as' => 'AgregarEnfermedad'
+]);
+Route::get('/editar_enfermedad/{id}',[
+    'uses' => 'App\Http\Controllers\Administrador\Enfermedades\EnfermedadesController@editar',
+    'as' => 'EditarEnfermedad'
+]);
+Route::post('/actualizar_enfermedad',[
+    'uses' => 'App\Http\Controllers\Administrador\Enfermedades\EnfermedadesController@actualizar',
+    'as' => 'ActualizarEnfermedad'
+]);
+Route::get('/eliminar_enfermedad/{id}',[
+    'uses' => 'App\Http\Controllers\Administrador\Enfermedades\EnfermedadesController@eliminar',
+    'as' => 'EliminarEnfermedad'
 ]);
 
 Route::get('/enfermedades_add_signo_a_tabla',[
@@ -156,6 +217,18 @@ Route::post('/agregar_signos',[
     'uses' => 'App\Http\Controllers\Administrador\Signos\SignosController@agregar',
     'as' => 'AgregarSigno'
 ]);
+Route::get('/editar_signos/{id}',[
+    'uses' => 'App\Http\Controllers\Administrador\Signos\SignosController@editar',
+    'as' => 'EditarSigno'
+]);
+Route::post('/actualizar_signos',[
+    'uses' => 'App\Http\Controllers\Administrador\Signos\SignosController@actualizar',
+    'as' => 'ActualizarSigno'
+]);
+Route::get('/eliminar_signos/{id}',[
+    'uses' => 'App\Http\Controllers\Administrador\Signos\SignosController@eliminar',
+    'as' => 'EliminarSigno'
+]);
 
 Route::get('/sintomas',[
     'uses' => 'App\Http\Controllers\Administrador\Sintomas\SintomasController@index',
@@ -170,6 +243,18 @@ Route::get('/registrar_sintomas',[
 Route::post('/agregar_sintomas',[
     'uses' => 'App\Http\Controllers\Administrador\Sintomas\SintomasController@agregar',
     'as' => 'AgregarSintoma'
+]);
+Route::get('/editar_sintomas/{id}',[
+    'uses' => 'App\Http\Controllers\Administrador\Sintomas\SintomasController@editar',
+    'as' => 'EditarSintoma'
+]);
+Route::post('/actualizar_sintomas',[
+    'uses' => 'App\Http\Controllers\Administrador\Sintomas\SintomasController@actualizar',
+    'as' => 'ActualizarSintoma'
+]);
+Route::get('/eliminar_sintomas/{id}',[
+    'uses' => 'App\Http\Controllers\Administrador\Sintomas\SintomasController@eliminar',
+    'as' => 'EliminarSintoma'
 ]);
 
 Route::get('/historiales_de_consulta',[

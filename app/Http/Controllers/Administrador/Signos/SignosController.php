@@ -43,14 +43,32 @@ class SignosController extends Controller{
     }
 
     public function editar($id){
-        return view("app.administrador.signos.editar");
+        $signo= Signo::find(Crypt::decrypt($id));
+        return view("app.administrador.signos.editar",[
+            "id" => $signo->id,
+            "signo" => $signo->nombre,
+            "descripcion" => $signo->descripcion
+        ]);
     }
 
     public function actualizar(Request $request){
+        $data =$request->all();
+        $signo= Signo::find($data["id"]);
+        $signo->nombre = $data["signo"];
+        $signo->descripcion = $data["descripcion"];
+        
+        $signo->save();
+        return redirect()->route('SignosIndex')->with('message', '¡Se editó el signo con éxito!');
+
 
     }
 
     public function eliminar($id){
+        $signo= Signo::find(Crypt::decrypt($id));
+        $signo->delete($id);
+        return redirect()->route('SignosIndex')->with('message', '¡Se editó el signo con éxito!');
+
+
 
     }
 }

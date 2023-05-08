@@ -47,24 +47,50 @@ class GenerarCitaController extends Controller{
         $cita = new Cita();
         $cita->fecha = $data['fecha'];
         $cita->hora = $data['hora'];
-        $cita->consultorio_id = $consultorio->id;
-        $cita->paciente_id = $paciente->id;
-        $cita->medico_id = $medico->id;
+        //$cita->consultorio_id = $consultorio->id;
+        $cita->consultorio_id = $data["consultorio"];
+        //$cita->paciente_id = $paciente->id;
+        $cita->paciente_id = $data["paciente"];
+       // $cita->medico_id = $medico->id;
+        $cita->medico_id = $data["medico"];
         $cita->estado_de_cita = 'Pendiente';
         $cita->save();
         return redirect()->route('CitasIndex')->with('message', '¡Se creó la nueva cita con éxito!');
     }
 
     public function editar($id){
-        return view("app.recepcionista.citas.editar");
+        $cita= Cita::find(Crypt::decrypt($id));
+        $pacientes = Paciente::all(); 
+        $consultorios = Consultorio::all(); 
+        $medicos = User::where('tipo','medico')->get();
+        return view("app.recepcionista.citas.editar",[
+            "cita" => $cita,   
+            "consultorios"=>$consultorios, 
+            "pacientes"=>$pacientes,
+            "medicos"=>$medicos
+        ]);
     }
 
     public function actualizar(Request $request){
+        $data = $request->all();
+        //dd($data);
+        $cita = Cita::find($data["id"]);
+        $cita->consultorio_id = $data["consultorio"];
+        $cita->paciente_id = $data["paciente"];
+        $cita->medico_id = $data["medico"];
+        $cita->fecha = $data["fecha"];
+        $cita->hora = $data["hora"];
 
+        $cita->save();
+        return redirect()->route('CitasIndex')->with('message', '¡Se editó la cita con éxito!');
     }
 
     public function eliminar($id){
-
+        $cita= Cita::find(Crypt::decrypt($id));
+        //$cita->delete($id);
+        $cita->estado_de_cita = 'Cancelada';
+        $cita->save();
+        return redirect()->route('CitasIndex')->with('message', '¡Se eliminó la cita con éxito!');
     }
 
     public function cambiar_estado_de_cita(){

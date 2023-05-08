@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Home') }}
                     </x-nav-link>
                     @if(request()->user()->tipo == 'admin' OR request()->user()->tipo == 'medico')
                         <x-nav-link href="{{ route('DiagnosticosIndex')}}" :active="request()->routeIs('DiagnosticosIndex')">

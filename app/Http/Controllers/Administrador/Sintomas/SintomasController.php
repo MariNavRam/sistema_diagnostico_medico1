@@ -42,14 +42,29 @@ class SintomasController extends Controller{
     }
 
     public function editar($id){
-        return view("app.administrador.sintomas.editar");
+        $sintoma= Sintoma::find(Crypt::decrypt($id));
+
+        return view("app.administrador.sintomas.editar",[
+            "id" => $sintoma->id,
+            "sintoma" => $sintoma->nombre,
+
+        ]);
     }
 
     public function actualizar(Request $request){
+        $data=$request->all();
+        $sintoma= Sintoma::find($data["id"]);
+        $sintoma->nombre = $data["sintoma"];
+
+        $sintoma->save();
+        return redirect()->route('SintomasIndex')->with('message', '¡Se editó el síntoma con éxito!');
 
     }
 
     public function eliminar($id){
+        $sintoma= Sintoma::find(Crypt::decrypt($id));
+        $sintoma->delete($id);
+        return redirect()->route('SintomasIndex')->with('message', '¡Se eliminó el síntoma con éxito!');
 
     }
 }

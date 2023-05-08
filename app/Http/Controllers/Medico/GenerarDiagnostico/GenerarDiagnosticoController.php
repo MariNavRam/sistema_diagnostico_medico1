@@ -107,7 +107,7 @@ class GenerarDiagnosticoController extends Controller{
                 }
             }
         }
-        
+        //dd($posibles_enfermedades);
         if(count($posibles_enfermedades) == 0){
             return view("app.medico.diagnosticos.consulta",["cita"=>$cita,"enfermedad"=>null,"tratamientos"=>null]);
         }
@@ -115,13 +115,15 @@ class GenerarDiagnosticoController extends Controller{
         $valores = array_count_values($posibles_enfermedades); 
         $primer_valor = array_values($valores)[0];
         $numero_actual = $primer_valor;
-        $todos_tienen_el_mismo_valor = 1;
-        foreach($valores as $valor){
-            if($valor != $numero_actual){
-                $todos_tienen_el_mismo_valor = 0;
+        $todos_tienen_el_mismo_valor = 0;
+        if(count($valores) > 1){
+            $todos_tienen_el_mismo_valor = 1;
+            foreach($valores as $valor){
+                if($valor != $numero_actual){
+                    $todos_tienen_el_mismo_valor = 0;
+                }
             }
         }
-        
         if($todos_tienen_el_mismo_valor == 1){
             return view("app.medico.diagnosticos.consulta",["cita"=>$cita,"enfermedad"=>null,"tratamientos"=>null]);
         }
@@ -151,7 +153,9 @@ class GenerarDiagnosticoController extends Controller{
     }
 
     public function eliminar($id){
-
+        $diagnostico=Diagnostico::find(Crypt::decrypt($id));
+        $diagnostico->delete($id);
+        return redirect()->route('DiagnosticosIndex');
     }
 
     public function add_signo_a_tabla(){
