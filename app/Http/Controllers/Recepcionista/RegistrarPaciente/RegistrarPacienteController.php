@@ -24,6 +24,7 @@ class RegistrarPacienteController extends Controller{
 
     public function agregar(Request $request){
         $data = $request->all();
+        dd($data);
         $paciente = new Paciente();
         $paciente->nombre = $data['nombre'];
         $paciente->apellido_paterno = $data['apellido_paterno'];

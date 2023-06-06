@@ -16,13 +16,14 @@ use App\Models\SignoEnfermedad;
 use App\Models\SintomaEnfermedad;
 use App\Models\TratamientoEnfermedad;
 use App\Models\EnfermedadYPruebaDeLaboratorio;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class EnfermedadesController extends Controller{
 
     public function index(Request $request){
         if($request->user()->tipo == 'admin'){
             $enfermedades = Enfermedad::all();
-            //dd($enfermedades);
+            Alert::success('¡Hola, Admin!','Welcome');
             return view("app.administrador.enfermedades.index",["enfermedades"=>$enfermedades]);
         }
         else{

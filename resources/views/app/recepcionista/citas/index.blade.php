@@ -14,6 +14,8 @@
             success: function(data){
                 console.log(data);
                 console.log("Se consiguió cambiar el estado correctamente");
+                alert("Se consiguió cambiar el estado correctamente");
+                window.location.reload();
             },
             error: function(data){
                 console.log("Error");

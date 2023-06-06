@@ -6,10 +6,10 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-mark class="block h-9 w-auto" />
+                        <img src="{{asset('images/nutriseeker.png')}}" alt="NutriSeeker" width="75" height="75">
                     </a>
                 </div>
-
+                
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
@@ -17,13 +17,14 @@
                     </x-nav-link>
                     @if(request()->user()->tipo == 'admin' OR request()->user()->tipo == 'medico')
                         <x-nav-link href="{{ route('DiagnosticosIndex')}}" :active="request()->routeIs('DiagnosticosIndex')">
-                            Diagnósticos
+                            Consultas
                         </x-nav-link>
                     @endif
                     @if(request()->user()->tipo == 'admin')
                         <x-nav-link href="{{ route('UsuariosIndex')}}" :active="request()->routeIs('UsuariosIndex')">
                             Usuarios
                         </x-nav-link>
+                        <!--
                         <x-nav-link href="{{ route('EnfermedadesIndex')}}" :active="request()->routeIs('EnfermedadesIndex')">
                             Enfermedades
                         </x-nav-link>
@@ -33,6 +34,7 @@
                         <x-nav-link href="{{ route('SintomasIndex')}}" :active="request()->routeIs('SintomasIndex')">
                             Sintomas
                         </x-nav-link>
+                        -->
                     @endif
                     <x-nav-link href="{{ route('PacientesIndex')}}" :active="request()->routeIs('PacientesIndex')">
                         Pacientes

@@ -52,8 +52,7 @@
 
                     <div class="split right">
                         <div class="centered">
-                            <img src="https://centromedicodelcaribe.com/assets/uploads/servicios/Especialidades/opt_close-up-female-doctor-with-happy-red-heart-greeting.jpg"
-                            style="width:448px;height:250px;">   
+                            <img src="{{asset('images/nutriseeker.png')}}" alt="NutriSeeker" width="350" height="450"> 
                         </div>
                     </div>
                 </div>
